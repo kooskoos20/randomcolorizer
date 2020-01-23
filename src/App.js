@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Button } from '@material-ui/core'
 import './App.css';
 
+const randomColorGenerator = () => Math.floor(Math.random() * 255)
+
 function App() {
+  const [red, setRed] = useState(randomColorGenerator())
+  const [green, setGreen] = useState(randomColorGenerator())
+  const [blue, setBlue] = useState(randomColorGenerator())
+
+  const handleClick = () => {
+    setRed(randomColorGenerator())
+    setGreen(randomColorGenerator())
+    setBlue(randomColorGenerator())
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ backgroundColor: `rgb(${red}, ${green}, ${blue})`}}>
+      <header className="Header">rgb ({red}, {green}, {blue})</header>
+      <section className="Section">
+        <Button onClick={handleClick} variant="contained"><b>Change Background</b></Button>
+      </section>
     </div>
   );
 }
